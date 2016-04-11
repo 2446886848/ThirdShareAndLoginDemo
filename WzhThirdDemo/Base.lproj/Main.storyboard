@@ -1,25 +1,98 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cVH-NO-ZIQ">
+                                <rect key="frame" x="171" y="128" width="72" height="34"/>
+                                <state key="normal" title="分享图片">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="sharePicture:" destination="BYZ-38-t0r" eventType="touchUpInside" id="azi-yI-RYN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jcp-Qv-7sf">
+                                <rect key="frame" x="171" y="192" width="72" height="34"/>
+                                <state key="normal" title="分享网页">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareWebPage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LY8-e0-mwP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1fY-Ds-MFR">
+                                <rect key="frame" x="175" y="256" width="63" height="34"/>
+                                <state key="normal" title="QQ登录">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="QQLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PhM-S8-zON"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3aA-Qf-Ipi">
+                                <rect key="frame" x="171" y="320" width="72" height="34"/>
+                                <state key="normal" title="微信登录">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="weixinLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b6S-DD-D7W"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b31-AL-GhB">
+                                <rect key="frame" x="171" y="384" width="72" height="34"/>
+                                <state key="normal" title="微博登录">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="weiboLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pab-sh-E4C"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z1B-4p-ddh">
+                                <rect key="frame" x="171" y="64" width="72" height="34"/>
+                                <state key="normal" title="分享文字">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareText:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J9Y-ao-0NV"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="z1B-4p-ddh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="44" id="AaN-6W-zEU"/>
+                            <constraint firstItem="b31-AL-GhB" firstAttribute="top" secondItem="3aA-Qf-Ipi" secondAttribute="bottom" constant="30" id="Jw5-bw-fHa"/>
+                            <constraint firstItem="1fY-Ds-MFR" firstAttribute="top" secondItem="jcp-Qv-7sf" secondAttribute="bottom" constant="30" id="P3f-7x-WRO"/>
+                            <constraint firstItem="cVH-NO-ZIQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QPU-pf-hae"/>
+                            <constraint firstItem="3aA-Qf-Ipi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QbM-de-n3B"/>
+                            <constraint firstItem="z1B-4p-ddh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VZB-iG-a1y"/>
+                            <constraint firstItem="cVH-NO-ZIQ" firstAttribute="top" secondItem="z1B-4p-ddh" secondAttribute="bottom" constant="30" id="WOo-O4-pra"/>
+                            <constraint firstItem="3aA-Qf-Ipi" firstAttribute="top" secondItem="1fY-Ds-MFR" secondAttribute="bottom" constant="30" id="aUI-F9-sd6"/>
+                            <constraint firstItem="b31-AL-GhB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fSC-Rh-phI"/>
+                            <constraint firstItem="jcp-Qv-7sf" firstAttribute="top" secondItem="cVH-NO-ZIQ" secondAttribute="bottom" constant="30" id="iEV-gK-Uol"/>
+                            <constraint firstItem="jcp-Qv-7sf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kSF-fR-yx8"/>
+                            <constraint firstItem="1fY-Ds-MFR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tTa-Zd-Tsc"/>
+                        </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="340" y="349"/>
         </scene>
     </scenes>
 </document>
