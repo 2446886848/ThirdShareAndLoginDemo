@@ -36,6 +36,8 @@ static NSString *const kWeiboRedirectURI = @"http://www.baidu.com";
  */
 - (IBAction)shareText:(id)sender {
     [ZHShareManager shareWithSharedType:ZHThirdShareTypeText title:@"要分享的文字" image:nil url:nil description:nil weiboDescription:nil callBack:^(NSString *message, BOOL succeed) {
+        
+        [self showAlertResultTitle:@"分享文字结果" content:message];
         ZHLog(@"分享文字结果successd:%@\t message:%@", @(succeed), message);
     }];
 }
@@ -45,6 +47,7 @@ static NSString *const kWeiboRedirectURI = @"http://www.baidu.com";
  */
 - (IBAction)sharePicture:(id)sender {
     [ZHShareManager shareWithSharedType:ZHThirdShareTypeImage title:@"要分享的文字" image:[UIImage imageNamed:@"copy_link"] url:nil description:nil weiboDescription:nil callBack:^(NSString *message, BOOL succeed) {
+        [self showAlertResultTitle:@"分享图片结果" content:message];
         ZHLog(@"分享图片结果successd:%@\t message:%@", @(succeed), message);
     }];
 }
@@ -54,6 +57,7 @@ static NSString *const kWeiboRedirectURI = @"http://www.baidu.com";
  */
 - (IBAction)shareWebPage:(id)sender {
     [ZHShareManager shareWithSharedType:ZHThirdShareTypeWebPage title:@"要分享的标题" image:[UIImage imageNamed:@"copy_link"] url:@"https://www.baidu.com" description:@"要分享的描述" weiboDescription:@"微博要分享的描述" callBack:^(NSString *message, BOOL succeed) {
+        [self showAlertResultTitle:@"分享网页结果" content:message];
         ZHLog(@"分享网页结果successd:%@\t message:%@", @(succeed), message);
     }];
 }
@@ -63,6 +67,7 @@ static NSString *const kWeiboRedirectURI = @"http://www.baidu.com";
  */
 - (IBAction)QQLogin:(id)sender {
     [[ZHThirdManager manager] getThirdUserInfo:ZHThirdTypeQQ callBack:^(ZHThirdUserInfo *userInfo, NSString *message, BOOL succeed){
+        [self showAlertResultTitle:message content:userInfo.description];
         ZHLog(@"QQLogin succeed = %@, userInfo = %@", @(succeed), userInfo);
     }];
 }
@@ -78,6 +83,7 @@ static NSString *const kWeiboRedirectURI = @"http://www.baidu.com";
     
 #warning 以下为测试微信登录的代码
     [[ZHThirdManager manager] getThirdUserInfo:ZHThirdTypeWeixin callBack:^(ZHThirdUserInfo *userInfo, NSString *message, BOOL succeed){
+        [self showAlertResultTitle:message content:userInfo.description];
         ZHLog(@"weixinLogin succeed = %@, userInfo = %@", @(succeed), userInfo);
     }];
 }
@@ -87,8 +93,15 @@ static NSString *const kWeiboRedirectURI = @"http://www.baidu.com";
  */
 - (IBAction)weiboLogin:(id)sender {
     [[ZHThirdManager manager] getThirdUserInfo:ZHThirdTypeWeibo callBack:^(ZHThirdUserInfo *userInfo, NSString *message, BOOL succeed){
+        [self showAlertResultTitle:message content:userInfo.description];
         ZHLog(@"weiboLogin succeed = %@, userInfo = %@", @(succeed), userInfo);
     }];
+}
+
+- (void)showAlertResultTitle:(NSString *)title content:(NSString *)content
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:content delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alertView show];
 }
 
 @end
