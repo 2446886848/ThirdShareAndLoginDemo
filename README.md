@@ -4,7 +4,7 @@
  
   ##此demo的特点：
   
-  * 1、使用起来简单，外部接口只有5个，使用及其方便。
+  * 1、使用起来简单，外部接口只有5个，使用极其方便。
   * 2、不需要使用者自己实现application:openURL:sourceApplication:annotation:、application:handleOpenURL:、application:openURL:options:等函数。
   * 3、支持QQ、QQ空间、微信、微信空间、微博、短信、粘贴板等的分享。
   
@@ -16,6 +16,6 @@
   *  5、分享要使用ZHShareManager类的类方法shareWithSharedType:title:image:url:description:weiboDescription:callBack:进行文字、图片、网页的分享
   *  6、第三方登录使用ZHThirdManager类的getThirdUserInfo:callBack:获取用户信息，回调的block的userInfo对象包含了用户的信息
    
-#####备注1：暂时QQ和微信的分享和登录使用了官方的应用的appKey信息，由于没有拿到微信的appsecret，因此微信登录暂时不可用，替换为用户自己应用信息后方可用。
+#####备注1：暂时QQ和微信的分享和登录使用了官方的demo应用的appKey信息，由于没有拿到微信的appsecret，因此微信登录暂时不可用，替换为用户自己应用信息后方可用。
 #####备注2：传到github时可能会有一些第三方平台的静态库无法上传，因此可能会需要使用者自己去第三方平台下载。
 #####备注3：项目使用cocoapod依赖了几个第三框架，运行前请执行pod命令获取本地代码。
