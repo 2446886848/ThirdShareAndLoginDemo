@@ -175,9 +175,9 @@ static NSString *kUnSupportLoginType = @"不支持的第三方登陆方式";
 
 - (void)swizzeSel:(SEL)applicationOpenURLSel withSel:(SEL)zh_applicationOpenURLSel
 {
-    Class appDelegateClass = NSClassFromString(@"AppDelegate");
-
-    NSAssert(appDelegateClass, @"[UIApplication sharedApplication].delegate is not a instance of AppDelegate class");
+    Class appDelegateClass = [self appDelegateClass];
+    
+    NSAssert(appDelegateClass, @"[UIApplication sharedApplication].delegate doesn't exist!");
     
     IMP applicationOpenURLImp = class_getMethodImplementation(self.class, applicationOpenURLSel);
     
@@ -191,6 +191,60 @@ static NSString *kUnSupportLoginType = @"不支持的第三方登陆方式";
     Method applicationOpenURLMethod = class_getInstanceMethod(appDelegateClass, applicationOpenURLSel);
     Method zh_applicationOpenURLMethod = class_getInstanceMethod(appDelegateClass, zh_applicationOpenURLSel);
     method_exchangeImplementations(applicationOpenURLMethod, zh_applicationOpenURLMethod);
+}
+
+/**
+ *  获取当前应用的AppDelegate类
+ *
+ *  @return 当前应用的AppDelegate类
+ */
+- (Class)appDelegateClass
+{
+    static Class returnClass = nil;
+    
+    if (returnClass) {
+        return returnClass;
+    }
+    unsigned int classCount = 0;
+    
+    NSMutableArray *appDelegates = @[].mutableCopy;
+    Class *classLists = objc_copyClassList(&classCount);
+    
+    for (int i = 0; i < classCount; i++) {
+        
+        //消除掉CLTilesManagerClient和SCRCException警告
+        NSString *className = NSStringFromClass(classLists[i]);
+        if ([className isEqualToString:@"CLTilesManagerClient"] ||
+            [className isEqualToString:@"SCRCException"]) {
+            continue;
+        }
+        
+        //根据isa指针判断一个类是否属于NSObject
+        if (object_getClass(object_getClass(classLists[i])) != object_getClass([NSObject class])) {
+            continue;
+        }
+        
+        //如果是程序的AppDelegate则首先属于UIResponder且遵守UIApplicationDelegate协议
+        if ([classLists[i] isSubclassOfClass:[UIResponder class]] &&
+            class_conformsToProtocol(classLists[i], @protocol(UIApplicationDelegate))) {
+            [appDelegates addObject:classLists[i]];
+        }
+    }
+    free(classLists);
+    
+    if (appDelegates.count == 0) {
+        returnClass = nil;
+    }
+    else if (appDelegates.count > 1)
+    {
+        ZHLog(@"appDelegates count is bigger than 1");
+        returnClass = nil;
+    }
+    else
+    {
+        returnClass = [appDelegates firstObject];
+    }
+    return returnClass;
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
