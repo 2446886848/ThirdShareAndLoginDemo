@@ -9,6 +9,8 @@
 #import "ZHThirdManager.h"
 #import <objc/runtime.h>
 
+#import "AppDelegate.h"
+
 #import "ZHWeiboManager.h"
 #import "ZHQQManager.h"
 #import "ZHQQSpaceManager.h"
@@ -175,7 +177,7 @@ static NSString *kUnSupportLoginType = @"不支持的第三方登陆方式";
 
 - (void)swizzeSel:(SEL)applicationOpenURLSel withSel:(SEL)zh_applicationOpenURLSel
 {
-    Class appDelegateClass = [self appDelegateClass];
+    Class appDelegateClass = [AppDelegate class];
     
     NSAssert(appDelegateClass, @"[UIApplication sharedApplication].delegate doesn't exist!");
     
@@ -197,6 +199,7 @@ static NSString *kUnSupportLoginType = @"不支持的第三方登陆方式";
  *  获取当前应用的AppDelegate类
  *
  *  @return 当前应用的AppDelegate类
+ *  @bref  由于是使用动态获取的方式 性能会慢些 建议直接填写为AppDelegate
  */
 - (Class)appDelegateClass
 {

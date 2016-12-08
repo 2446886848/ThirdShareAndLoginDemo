@@ -53,4 +53,9 @@ static ZHCopyManager *instance = nil;
     pasteboard.string = urlStr;
     callBack(@"复制成功", YES);
 }
+
+- (void)shareWebPageWithTitle:(NSString *)title description:(NSString *)description thumbImageUrl:(NSString *)thumbImageUrl url:(NSString *)urlStr callBack:(ZHThirdShareCallBack)callBack
+{
+    [self shareWebPageWithTitle:title description:description thumbImage:nil url:urlStr callBack:callBack];
+}
 @end

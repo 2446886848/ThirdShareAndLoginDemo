@@ -69,6 +69,14 @@ static ZHQQManager *instance = nil;
     [self shareWithContentObject:newsObject];
 }
 
+- (void)shareWebPageWithTitle:(NSString *)title description:(NSString *)description thumbImageUrl:(NSString *)thumbImageUrl url:(NSString *)urlStr callBack:(ZHThirdShareCallBack)callBack
+{
+    self.shareCallBack = callBack;
+    
+    QQApiURLObject *urlObject = [QQApiURLObject objectWithURL:[NSURL URLWithString:urlStr] title:title description:description previewImageURL:[NSURL URLWithString:thumbImageUrl] targetContentType:QQApiURLTargetTypeNews];
+    [self shareWithContentObject:urlObject];
+}
+
 #pragma mark - ZHThirdLoginProtocol
 - (void)loginWithCallBack:(ZHThirdLoginCallBack)callBack
 {

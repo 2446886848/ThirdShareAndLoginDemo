@@ -55,6 +55,11 @@ static ZHSMSManager *instance = nil;
     [self sendSMSWithText:urlStr];
 }
 
+- (void)shareWebPageWithTitle:(NSString *)title description:(NSString *)description thumbImageUrl:(NSString *)thumbImageUrl url:(NSString *)urlStr callBack:(ZHThirdShareCallBack)callBack
+{
+    [self shareWebPageWithTitle:title description:description thumbImage:nil url:urlStr callBack:callBack];
+}
+
 #pragma mark - MFMessageComposeViewControllerDelegate
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
 {

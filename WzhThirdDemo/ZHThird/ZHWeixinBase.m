@@ -116,6 +116,21 @@ static NSString *const kWeixinGetUserInfoUrl = @"https://api.weixin.qq.com/sns/u
     }
 }
 
+- (void)shareWebPageWithTitle:(NSString *)title description:(NSString *)description thumbImageUrl:(NSString *)thumbImageUrl url:(NSString *)urlStr callBack:(ZHThirdShareCallBack)callBack
+{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSURL *imageUrl = [NSURL URLWithString:thumbImageUrl];
+        NSData *data = nil;
+        if (imageUrl) {
+            data = [NSData dataWithContentsOfURL:imageUrl];
+        }
+        //回到主线程调用
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self shareWebPageWithTitle:title description:description thumbImage:[UIImage imageWithData:data] url:urlStr callBack:callBack];
+        });
+    });
+}
+
 #pragma mark - ZHThirdLoginProtocol
 - (void)loginWithCallBack:(ZHThirdLoginCallBack)callBack
 {

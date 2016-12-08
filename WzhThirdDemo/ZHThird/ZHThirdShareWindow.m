@@ -12,6 +12,7 @@
 @implementation ZHThirdShareWindow
 
 static UIWindow *window;
+
 + (void)showWithType:(ZHThirdShareType)thirdSharedType callBack:(ThirdShareWindowCallBack)callBack
 {
     window = [[UIWindow alloc] init];

@@ -37,6 +37,7 @@ typedef void(^ZHThirdLoginCallBack)(ZHThirdUserInfo *userInfo, NSString *message
 - (void)shareText:(NSString *)text callBack:(ZHThirdShareCallBack)callBack;
 - (void)shareText:(NSString *)text image:(UIImage *)image callBack:(ZHThirdShareCallBack)callBack;
 - (void)shareWebPageWithTitle:(NSString *)title description:(NSString *)description thumbImage:(UIImage *)thumbImage url:(NSString *)urlStr callBack:(ZHThirdShareCallBack)callBack;
+- (void)shareWebPageWithTitle:(NSString *)title description:(NSString *)description thumbImageUrl:(NSString *)thumbImageUrl url:(NSString *)urlStr callBack:(ZHThirdShareCallBack)callBack;
 
 @end
 

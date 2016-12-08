@@ -12,5 +12,6 @@
 @interface ZHShareManager : NSObject
 
 + (void)shareWithSharedType:(ZHThirdShareType)shareType title:(NSString *)title image:(UIImage *)image url:(NSString *)url description:(NSString *)description weiboDescription:(NSString *)description callBack:(ZHThirdShareCallBack)callBack;
++ (void)shareWithSharedType:(ZHThirdShareType)shareType title:(NSString *)title imageUrl:(NSString *)imageUrlStr url:(NSString *)url description:(NSString *)description weiboDescription:(NSString *)weiboDescription callBack:(ZHThirdShareCallBack)callBack;
 
 @end
